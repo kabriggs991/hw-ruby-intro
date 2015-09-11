@@ -24,6 +24,8 @@ def sum_to_n? arr, n
   
   arr = arr.sort
   for i in arr 
+    return false if i > n 
+  
     for j in arr 
       if i != j && (i+j == n)
         return true
