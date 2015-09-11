@@ -21,10 +21,16 @@ end
 def sum_to_n? arr, n
   return false if arr.size == 0
   return false if arr.size == 1
-
-   # [1,2,2,4], 4
-   # pull out all numbers greater than the input number
-   # 
+  
+  arr = arr.sort
+  for i in arr 
+    for j in arr 
+      if i != j && (i+j == n)
+        return true
+      end
+    end
+  end
+  return false
    
 end
 
@@ -43,7 +49,7 @@ def starts_with_consonant? s
 end
 
 def binary_multiple_of_4? s
-  if s =~ /\b[01]{4}\b/
+  if s =~ /^(10|0)*(10)?0$/
     return true
   else
     return false
@@ -53,5 +59,19 @@ end
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  def initialize (isbn, price)
+    if isbn == nil or isbn == ""
+      raise ArgumentError.new('Argument is not string')
+    end
+    raise ArgumentError, 'Argument is less than or equal to zero' unless price > 0
+    @isbn = isbn
+    @price = price
+  end
+  attr_accessor :isbn
+  attr_accessor :price
+  
+  def price_as_string
+    return sprintf('$%0.2f',price)
+  end
+  
 end
